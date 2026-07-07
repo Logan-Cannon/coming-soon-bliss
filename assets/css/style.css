@@ -1,6 +1,13 @@
 *::before,
 *::after,
 *
+@font-face {
+  font-family: "KiwiFruit";
+  src: url("fonts/Kiwi Fruit.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 {
     margin: 0;
     padding: 0;
@@ -32,7 +39,7 @@ body,
 
 body{
     font-size: 1.6rem;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'KiwiFruit', sans-serif;
     font-weight: 400;
 }
 
