@@ -17,6 +17,9 @@
 
 html{
     font-size: 6px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 @media (min-width: 700px) {
@@ -35,13 +38,15 @@ html,
 body,
 .banner
 {
-    height: 100%;
+    height: 100vh;
+    width: 100%;
 }
 
 body{
     font-size: 1.6rem;
     font-family: Arial;
     font-weight: 400;
+    overflow: hidden;
 }
 
 .banner{
@@ -49,10 +54,17 @@ body{
     place-items: center;
     background-image: url('../images/banner.webp');
     background-size: cover;
-    background-position: center top;
+    background-position: center center;
     background-attachment: fixed;
     text-align: center;
     padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
 }
 
 .banner__title{
