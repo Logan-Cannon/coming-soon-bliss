@@ -1,7 +1,13 @@
+/* Reset */
+*,
 *::before,
-*::after,
-*
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+/* Optional custom font */
 @font-face {
   font-family: "KiwiFruit";
   src: url("fonts/KiwiFruit.woff2") format("woff2");
@@ -9,75 +15,102 @@
   font-style: normal;
 }
 
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html{
-    font-size: 6px;
+/* Base sizing */
+html {
+  font-size: 6px;
+  height: 100%;
 }
 
 @media (min-width: 700px) {
-    html{
-        font-size: 8px;
-    }
+  html { font-size: 8px; }
 }
 
 @media (min-width: 900px) {
-    html{
-        font-size: 10px;
-    }
+  html { font-size: 10px; }
 }
 
-html,
-body,
-.banner
-{
-    height: 100%;
+/* Prevent scrolling and ensure full viewport height */
+html, body {
+  height: 100%;
+  overflow: hidden; /* disables scrolling */
 }
 
-body{
-    font-size: 1.6rem;
-    font-family: Arial;
-    font-weight: 400;
+body {
+  font-size: 1.6rem;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.banner{
-    display: grid;
-    place-items: center;
-    background-image: url('../images/banner.webp');
-    background-size: cover;
-    background-position: center top;
-    text-align: center;
-    padding: 15px;
+/* Banner layout: center content */
+.banner {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 15px;
+  overflow: hidden;
 }
 
-.banner__title{
-    --text-stroke: 1px;
-    color: #ffffff;
-    font-size: 12rem;
-    font-weight: 800;
-    text-shadow:
-        calc(var(--text-stroke) * -1) calc(var(--text-stroke) * -1) 0px #000000,
-        calc(var(--text-stroke) * -1) 1px 0px #000000,
-        var(--text-stroke) calc(var(--text-stroke) * -1) 0px #000000,
-        var(--text-stroke) var(--text-stroke) 0px #000000,
-        0.8rem 0.6rem 0px #000000;
-    margin-bottom: 3rem;
+/* Use a fixed pseudo-element for the background so it remains stationary
+   (better mobile support than background-attachment: fixed) */
+.banner::before {
+  content: "";
+  position: fixed; /* stays fixed to the viewport */
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  background-image: url('../images/banner.webp');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  transform: translateZ(0);
 }
 
-@media (max-width: 699px){
-    .banner__title{
-        line-height: 1;
-    }
+/* Container that holds logo + text */
+.container {
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
 }
 
-.banner__text{
-    color: #000000;
-    font-size: 2.8rem;
-    max-width: 60rem;
-    margin-left: auto;
-    margin-right: auto;
+/* Responsive logo */
+.logo {
+  display: block;
+  width: min(45rem, 70vw); /* caps the logo on large screens and keeps it fluid */
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 2rem;
+}
+
+/* Banner text styling */
+.banner__text {
+  color: #000000;
+  font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Large title (if used) */
+.banner__title {
+  --text-stroke: 1px;
+  color: #ffffff;
+  font-size: 12rem;
+  font-weight: 800;
+  text-shadow:
+    calc(var(--text-stroke) * -1) calc(var(--text-stroke) * -1) 0px #000000,
+    calc(var(--text-stroke) * -1) 1px 0px #000000,
+    var(--text-stroke) calc(var(--text-stroke) * -1) 0px #000000,
+    var(--text-stroke) var(--text-stroke) 0px #000000,
+    0.8rem 0.6rem 0px #000000;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 699px) {
+  .banner__title {
+    line-height: 1;
+  }
 }
