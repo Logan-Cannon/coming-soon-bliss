@@ -50,6 +50,7 @@ body{
     background-image: url('../images/banner.webp');
     background-size: cover;
     background-position: center top;
+    background-attachment: fixed;
     text-align: center;
     padding: 15px;
 }
